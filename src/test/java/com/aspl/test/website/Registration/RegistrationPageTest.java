@@ -80,7 +80,7 @@ public class RegistrationPageTest extends TestBase {
 		registrationPage.updatePatientDetailByUpdateButton();
 		registrationPage.updateDeatilAlart();
 	}
-	@Test
+	@Test(priority = 3)
 	public void depedentPatientRegistrationMethod() throws InterruptedException {
 		loginpage.validateCmpyLogo();
 		homepage=loginpage.login();
@@ -88,7 +88,7 @@ public class RegistrationPageTest extends TestBase {
 		loginpage.clickonModuleAndClickonOption("Registration");
 		registrationPage.selectRegistrationTypeFromDropDown("New");
 		Thread.sleep(3000);
-		//registrationPage.clickOnMotherUHIDLevel();
+		registrationPage.clickOnMotherUHIDLevel();
 		//registrationPage.selectPatientFromPatientDetailsGrid();
 		registrationPage.enterMotherUHIDInTextBox();
 		Thread.sleep(3000);
@@ -99,5 +99,23 @@ public class RegistrationPageTest extends TestBase {
 		registrationPage.enterNewBornBabyWeight("2.6");
 		registrationPage.enterNewBornBabyHeight("1");
 		registrationPage.selectSaveButton();
+	}
+	@Test(priority = 4)
+	public void updateAlreadyPatientByUHIDLevelClick() throws InterruptedException {
+		loginpage.validateCmpyLogo();
+		homepage=loginpage.login();
+		loginpage.clickOnMainMenu();
+		loginpage.clickonModuleAndClickonOption("Registration");
+		registrationPage.clickOnUhidLevel();
+		driver.switchTo().frame(driver.findElement(By.name("RadWindowForNew")));
+		registrationPage.selectPatientFromPatientDetailsGrid();
+		driver.switchTo().defaultContent();
+		Thread.sleep(5000);
+	    registrationPage.selectCompanyRadioButton();
+	    Thread.sleep(3000);
+	    registrationPage.selectPayerFromDropDown("AIRPORT AUTHORITY OF INDIA");
+	    registrationPage.enterEditReasonInTextBox("Patient Details Update");
+		registrationPage.updatePatientDetailByUpdateButton();
+		registrationPage.updateDeatilAlart();
 	}
 }

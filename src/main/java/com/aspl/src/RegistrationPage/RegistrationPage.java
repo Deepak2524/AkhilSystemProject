@@ -103,6 +103,10 @@ public class RegistrationPage extends TestBase {
 	WebElement NEW_BORN_BABY_WEIGHT;
 	@FindBy(id="ctl00_ContentPlaceHolder1_txtHeight")
 	WebElement NEW_BORN_BABY_HEIGHT;
+    @FindBy(xpath="//input[@id='ctl00_ContentPlaceHolder1_rdoPayertype_1']")
+    WebElement COMPANY_PAYER_RADIO_BUTTON;
+    @FindBy(xpath="//input[@id='ctl00_ContentPlaceHolder1_ddlCompany_Input']")
+    WebElement PAYER_DROP_DOWN;
     
     
 	public RegistrationPage() {
@@ -327,6 +331,7 @@ public class RegistrationPage extends TestBase {
 	}
 	public void clickOnUhidLevel() {
 		clickElementByJS(driver, UHID_LEVEL_CLICK);
+		logger.info("Click On UHID Level n Registration Window");
 	}
 	public void clickOnMotherUHIDLevel() {
 		clickElementByJS(driver, MOTHER_UHID_LEVEL_CLICK);
@@ -372,4 +377,15 @@ public class RegistrationPage extends TestBase {
 	public void enterNewBornBabyHeight(String height) {
 		NEW_BORN_BABY_HEIGHT.sendKeys(height);
 	}
+	public void selectCompanyRadioButton() {
+		clickElementByJS(driver, COMPANY_PAYER_RADIO_BUTTON);
+		logger.info("Company Radio Butn get Selected");
+	}
+	public void selectPayerFromDropDown(String payer) {
+		clickElementByJS(driver, PAYER_DROP_DOWN);
+		PAYER_DROP_DOWN.sendKeys(payer);
+		PAYER_DROP_DOWN.sendKeys(Keys.ENTER);
+		logger.info("Following payer has been selected from Payer Drop Down :"+payer);
+	}
 }
+
